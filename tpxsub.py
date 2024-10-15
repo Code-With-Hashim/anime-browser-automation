@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 import re
 import requests
 import time
+import json
 
 
 
@@ -42,13 +43,13 @@ def main(link, search, eps):
         for anime_card in anime_cards:
             title = anime_card.find_element(By.TAG_NAME, "a").get_attribute("title")
             link = anime_card.find_element(By.TAG_NAME, "a").get_attribute("href")
-            print(title)
+            # print(title)
 
             if search in title:
                 anchor_tag = anime_card.find_element(By.TAG_NAME, "a")
                 anchor_tag.click()
                 # sb.click(anime_card.find_element(By.TAG_NAME, "a"))
-                print('open-link')
+                # print('open-link')
 
                 # Wait for the content to load on the new page
                 sb.wait_for_element("body", timeout=10)
@@ -63,11 +64,11 @@ def main(link, search, eps):
                         title = p_tag.find_element(By.TAG_NAME,"strong").text
                         link = p_lists[p_index + 2].find_element(By.TAG_NAME,"a")
                         link_part = link.get_attribute("innerHTML")
-                        print(title, eps, link_part)
+                        # print(title, eps, link_part)
 
                         title_words = title.split(" ")
                         if any(word.isdigit() and int(word) == eps for word in title_words) and link_part == 'Mir':
-                            print("GOES IN")
+                            # print("GOES IN")
                             # sb.click(link)
                 # First click the link
                             link.click()
@@ -81,7 +82,7 @@ def main(link, search, eps):
 
                                     # If the click link contains "https://publicearn.com", go back and retry
                                     if "https://modijiurl.com" not in click_link:
-                                        print("Found publicearn.com, going back and retrying...")
+                                        # print("Found publicearn.com, going back and retrying...")
 
                                         # Go back to the previous page
                                         sb.go_back()
@@ -93,21 +94,22 @@ def main(link, search, eps):
                                         link.click()
 
                                     else:
-                                        print(click_link)
+                                        # print(click_link)
                                         if "https://modijiurl.com" in click_link:
-                                            print('found modi url')
+                                            # print('found modi url')
                                             break
                                         else:
-                                            print("Non-publicearn link found and modiji url is not found, proceeding...")
+                                            pass
+                                            # print("Non-publicearn link found and modiji url is not found, proceeding...")
                                     
                                 except Exception as e:
-                                    print("Error occurred while processing the link:", str(e))
+                                    # print("Error occurred while processing the link:", str(e))
                                     break  # Exit the loop on error
                                 
 
 
                             if "https://modijiurl.com" in click_link:
-                                print("goes in")
+                                # print("goes in")
                                 # link_btn.click()
                                 # print("clicked")
 
@@ -122,7 +124,6 @@ def main(link, search, eps):
 
                                 # time.sleep(10)
                                 sb.uc_open_with_reconnect(click_link, 3)
-                                print('connect')
 
                                 # try:
                                 #     verify_success(sb)
@@ -178,13 +179,11 @@ def main(link, search, eps):
                                 link = continue_btn.get_attribute('href')
 
                                 sb.open(link)
-                                print('open-link')
                                 # sb.click("xpath=//a[normalize-space(text())='Click to view the file links']")
 
                                 time.sleep(10)
                                 rows = sb.find_elements(By.TAG_NAME , "tr")
 
-                                print(rows , len(rows))
 
                                 # List to store the links and their titles
                                 link_list = []
@@ -204,12 +203,14 @@ def main(link, search, eps):
                                         # Append the data to the list
                                         link_list.append((provider_title, link))
                                     except Exception as e:
-                                        print(e)
+                                        ''
+                                        # print(e)
                                 
-
+                                print(json.dumps(link_list))
                                 # Print the extracted links and titles
-                                for provider_title, link in link_list:
-                                    print(f"Provider: {provider_title}, Link: {link}")
+                                # for provider_title, link in link_list:
+                                #     ''
+                                #     print(f"Provider: {provider_title}, Link: {link}")
                                 
 
 
@@ -220,9 +221,9 @@ def main(link, search, eps):
                                 #     print("NOT PUBLIC", link)
 
                     except Exception as e:
-                        print("NO tag found")
-        sb.input("Press Enter to close the browser...")
-        sb.quit()
+                        pass
+                        # print("NO tag found")
+        # sb.quit()
 
 
 def publicEarnFormByPass(sb, id):
@@ -230,24 +231,27 @@ def publicEarnFormByPass(sb, id):
     try:
         try:
             sb.execute_script(f"document.getElementById('SoumyaHelp-Ads').remove();")
-            print('Ads remove successfully')
+            # print('Ads remove successfully')
             sb.execute_script(f"document.getElementById('BR-Footer-Ads').remove();")
-            print('Ads remove successfully')
+            # print('Ads remove successfully')
 
         except Exception as eror:
-            print(eror)
+            pass
+            # print(eror)
         sb.execute_script(f"document.getElementById('{id}').style.display = 'block';")
         continue_click = sb.find_element(By.ID , id)
-        print('findit', continue_click.get_attribute('outerHTML'))
+        # print('findit', continue_click.get_attribute('outerHTML'))
         try:
 
             continue_click.click()
         except Exception as er:
-            print('eror', er)
+            pass
+            # print('eror', er)
         sb.wait_for_element("body", timeout=10)
-        print(sb.get_current_url())
+        # print(sb.get_current_url())
     except Exception as e:
-        print('form is not found', id)
+        pass
+        # print('form is not found', id)
 
 
 def test_proxy():
