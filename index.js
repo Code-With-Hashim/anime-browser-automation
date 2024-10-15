@@ -10,7 +10,7 @@ app.get('/tpxsub', (req, res) => {
     const arg = req.params.arg;
 
     // Spawn a new child process to run the Python script
-    const pythonProcess = spawn('python', ['tpxsub.py', arg]);
+    const pythonProcess = spawn('python3', ['tpxsub.py', arg]);
 
     let pythonResponse = '';
 
