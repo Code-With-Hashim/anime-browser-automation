@@ -1,9 +1,5 @@
 from seleniumbase import SB
 from selenium.webdriver.common.by import By
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-import re
 import requests
 import time
 import json
@@ -36,12 +32,7 @@ def search_in_website(sb, search):
 
 # Define the main function using SeleniumBase
 def main(link, search, eps):
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")  # Run in headless mode
-    chrome_options.add_argument("--no-sandbox")  # Bypass OS security model
-    chrome_options.add_argument("--disable-dev-shm-usage")
-
-    with SB(uc=True, headless=True) as sb:
+    with SB(uc=True) as sb:
         sb.open(link)
 
         search_in_website(sb, search=search)
