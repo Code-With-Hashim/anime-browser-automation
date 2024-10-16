@@ -1,0 +1,8 @@
+#!/bin/bash
+# npm start
+# npm start --prefix curezema/exec/
+
+
+# forever start /anime-browser/exec/index.js
+sudo systemctl restart curezema
+# npx nodemon index.js

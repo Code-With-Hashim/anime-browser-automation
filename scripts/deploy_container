@@ -1,0 +1,49 @@
+#!/bin/bash
+cd /anime-browser/exec
+# Define variables
+IMAGE_NAME="snuckworks"
+ECR_URL="126817120010.dkr.ecr.ap-south-1.amazonaws.com/eks-ecr-test"
+REGION="ap-south-1"
+
+# Function to increment the version number
+increment_version() {
+  local version=$1
+  local major=$(echo $version | cut -d. -f1)
+  local minor=$(echo $version | cut -d. -f2)
+  local patch=$(echo $version | cut -d. -f3)
+  patch=$((patch + 1))
+  echo "${major}.${minor}.${patch}"
+}
+
+# Get the current version from the latest image tag in ECR
+LATEST_VERSION=$(aws ecr describe-images --repository-name eks-ecr-test --region $REGION --query 'sort_by(imageDetails,& imagePushedAt)[-1].imageTags[0]' --output text)
+if [[ $LATEST_VERSION == "None" ]]; then
+  LATEST_VERSION="0.0.0"
+fi
+
+# Increment the version number
+NEW_VERSION=$(increment_version $LATEST_VERSION)
+
+# Clean up Docker system
+sudo docker system prune -a -f
+
+# Build Docker image
+sudo docker build -t ${IMAGE_NAME}:${NEW_VERSION} .
+
+# Log in to AWS ECR
+sudo aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $ECR_URL
+
+# Tag the Docker image
+sudo docker tag ${IMAGE_NAME}:${NEW_VERSION} ${ECR_URL}:${NEW_VERSION}
+
+# Push the Docker image to ECR
+sudo docker push ${ECR_URL}:${NEW_VERSION}
+
+# Update the image version in deployment.yaml
+sudo sed -i "s|image: ${ECR_URL}:.*|image: ${ECR_URL}:${NEW_VERSION}|g" /anime-browser/exec/deployment.yaml
+
+# Apply Kubernetes deployment and service files
+kubectl apply -f /anime-browser/exec/deployment.yaml
+kubectl apply -f /anime-browser/exec/service.yaml
+
+echo "Deployed ${IMAGE_NAME}:${NEW_VERSION}"

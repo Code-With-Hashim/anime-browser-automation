@@ -1,0 +1,2 @@
+#!/bin/bash
+# (cd /anime-browser/exec && forever stopall && cd -)

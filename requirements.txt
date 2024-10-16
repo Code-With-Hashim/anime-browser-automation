@@ -1,3 +1,8 @@
 seleniumbase
 selenium
 requests
+
+
+pip3 install seleniumbase selenium requests
+
+python3 tpxsub.py
