@@ -27,7 +27,7 @@ async function test() {
     })
     await page.goto('https://modijiurl.com/fBUFTv')
 
-    await dealy(10000)
+    await dealy(60000)
     const currentUrl = page.url();
     console.log('Current URL:', currentUrl);
     console.log(await page.content())
