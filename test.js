@@ -30,6 +30,9 @@ async function test() {
     await dealy(10000)
     const currentUrl = page.url();
     console.log('Current URL:', currentUrl);
+    console.log(await page.content())
+
+    page.close()
 
 }
 
