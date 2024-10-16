@@ -4,5 +4,5 @@
 
 
 # forever start /anime-browser/exec/index.js
-sudo systemctl restart curezema
+sudo systemctl restart anime
 # npx nodemon index.js

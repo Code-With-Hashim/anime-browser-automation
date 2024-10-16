@@ -123,7 +123,8 @@ def main(link, search, eps):
                                 
                                 # print("verification successfull")
                                 sb.wait_for_element(By.TAG_NAME, "body", timeout=10)
-                                sb.save_screenshot("datacamp.png")
+                                print(sb.get_page_source())
+                                # sb.save_screenshot("datacamp.png")
 
 
                                 # Wait for the new window/tab and switch to it
