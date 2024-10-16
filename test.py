@@ -30,6 +30,8 @@ def main():
             print("clickable")
         else:
             sb.uc_gui_click_captcha()
+            print("clickable")
+
 
         
         # Print the current URL
