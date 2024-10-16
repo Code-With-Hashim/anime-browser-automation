@@ -1,6 +1,6 @@
 #!/bin/bash
 (cd /anime-browser/exec && npm install && cd -)
 
-(cd /anime-browser/exec && chown -R wsrv_adm:wsrv_adm /curezema/* && cd -)
+(cd /anime-browser/exec && chown -R wsrv_adm:wsrv_adm /anime-browser/* && cd -)
 # Enter required dependencies below
 # pip install flask
