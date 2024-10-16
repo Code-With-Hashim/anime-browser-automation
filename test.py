@@ -34,8 +34,8 @@ def main():
         #     except Exception:
         #         print("Failed after CAPTCHA handling, detected!")
         #         raise  # Raise the exception to indicate a failure
-        time.sleep(20)
-        print(sb.current_url)
+        time.sleep(10)
+        print("Current URL:", sb.get_current_url())
         # sb.save_screenshot("test.png")
 
 if __name__ == "__main__":
