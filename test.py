@@ -35,7 +35,7 @@ def main():
         #         print("Failed after CAPTCHA handling, detected!")
         #         raise  # Raise the exception to indicate a failure
         time.sleep(20)
-        sb.save_screenshot("test.png")
+        # sb.save_screenshot("test.png")
 
 if __name__ == "__main__":
     main()
