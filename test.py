@@ -15,7 +15,7 @@ def handle_captcha(sb):
 
 def main():
     
-    with SB(uc=True, agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36") as sb:
+    with SB(uc=True, agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36", ad_block=True , incognito=True) as sb:
         # Open the URL with a reconnect attempt
         sb.uc_open_with_reconnect("https://modijiurl.com/fBUFTv", 3)
 
@@ -23,6 +23,8 @@ def main():
             sb.uc_click('input[value*="Verify"]')
             print("clickable")
         
+        # Print the current URL
+        print("Current URL:", sb.get_current_url())
         # # Try to verify success
         # try:
         #     verify_success(sb)
