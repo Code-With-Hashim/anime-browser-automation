@@ -17,7 +17,7 @@ def verify_success(sb):
 
 # Define the main function using SeleniumBase
 def main(link, search, eps):
-    with SB(uc=True, test=True) as sb:
+    with SB(uc=True) as sb:
         sb.open(link)
 
         # Retrieve all anime cards
@@ -124,7 +124,7 @@ def main(link, search, eps):
                                 # print("verification successfull")
                                 sb.wait_for_element(By.TAG_NAME, "body", timeout=10)
                                 print(sb.get_page_source())
-                                # sb.save_screenshot("datacamp.png")
+                                sb.save_screenshot("datacamp.png")
 
 
                                 # Wait for the new window/tab and switch to it
