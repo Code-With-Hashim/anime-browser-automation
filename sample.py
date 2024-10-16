@@ -17,7 +17,7 @@ def verify_success(sb):
 
 # Define the main function using SeleniumBase
 def main(link, search, eps):
-    with SB(uc=True) as sb:
+    with SB(uc=True, driver_version="129.0.6668.100") as sb:
         sb.open(link)
 
         # Retrieve all anime cards

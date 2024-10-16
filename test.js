@@ -25,23 +25,12 @@ async function test() {
         // }
 
     })
-    await page.goto('https://modijiurl.com/fBUFTv')
+    await page.goto('https://2captcha.com/demo/cloudflare-turnstile-challenge')
 
-    await dealy(20000)
-    const currentUrl = page.url();
-    console.log('Current URL:', currentUrl);
-    console.log(await page.content())
-
-    page.close()
+    page.waitForSelector("")    
 
 }
 
-async function dealy(ms) {
-    return new Promise((resolve , reject) => {
-        setTimeout(() => {
-           resolve() 
-        }, ms);
-    })
-}
+
 
 test()
