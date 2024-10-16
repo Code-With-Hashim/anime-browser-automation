@@ -32,17 +32,17 @@ def main():
         
         # Print the current URL
         print("Current URL:", sb.get_current_url())
-        # # Try to verify success
-        # try:
-        #     verify_success(sb)
-        # except Exception as e:
-        #     print("Initial verification failed. Attempting to handle CAPTCHA.")
-        #     handle_captcha(sb)
-        #     try:
-        #         verify_success(sb)
-        #     except Exception:
-        #         print("Failed after CAPTCHA handling, detected!")
-        #         raise  # Raise the exception to indicate a failure
+        # Try to verify success
+        try:
+            verify_success(sb)
+        except Exception as e:
+            print("Initial verification failed. Attempting to handle CAPTCHA.")
+            handle_captcha(sb)
+            try:
+                verify_success(sb)
+            except Exception:
+                print("Failed after CAPTCHA handling, detected!")
+                # raise  # Raise the exception to indicate a failure
         time.sleep(10)
         print("Current URL:", sb.get_current_url())
         # sb.save_screenshot("test.png")
