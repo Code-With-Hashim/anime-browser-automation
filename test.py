@@ -23,7 +23,9 @@ with SB(uc=True, headed=True, disable_features="UserAgentClientHint", agent=ua, 
     tab_handles = sb.driver.window_handles
     print(len(tab_handles))
     if (len(tab_handles) >= 2):
-        sb.switch_to_window(1)
+        for tab in tab_handles:
+            print(tab)
+        sb.switch_to_window(0)
         print('switched')
     print(sb.get_current_url())
     # driver_version = sb.driver.capabilities['chrome']['chromedriverVersion']  # For Chrome
