@@ -18,7 +18,7 @@ def verify_success(sb):
     sb.sleep(3)
 
 ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
-with SB(uc=True, headed=True, disable_features="UserAgentClientHint", agent=ua, incognito=True) as sb:
+with SB(uc=True, headed=True, disable_features="UserAgentClientHint", agent=ua, incognito=True, xvfb=True) as sb:
     sb.uc_open_with_reconnect("https://modijiurl.com/fBUFTv", 3)
 
     print(sb.get_current_url())
@@ -34,7 +34,7 @@ with SB(uc=True, headed=True, disable_features="UserAgentClientHint", agent=ua, 
         pyautogui.press(" ")
         sb.driver.reconnect(10)
 
-    sb.uc_gui_handle_cf()
+    sb.sb.uc_gui_click_captcha()()
     print("connect")
     random_number = random.randint(1000, 9999)
     filename = f"screenshot_{random_number}.png"
