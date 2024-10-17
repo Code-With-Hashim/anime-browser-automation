@@ -20,7 +20,7 @@ def verify_success(sb):
 ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
 with SB(uc=True, headed=True, disable_features="UserAgentClientHint", agent=ua, incognito=True, xvfb=True) as sb:
     sb.uc_open_with_reconnect("https://modijiurl.com/fBUFTv", 3)
-    tab_handles = sb.get_window_handles()
+    tab_handles = sb.driver.window_handles
     print(len(tab_handles))
     print(sb.get_current_url())
     # driver_version = sb.driver.capabilities['chrome']['chromedriverVersion']  # For Chrome
