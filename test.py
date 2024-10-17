@@ -41,7 +41,7 @@ with SB(uc=True, headed=True, disable_features="UserAgentClientHint", agent=ua, 
     # driver.uc_gui_click_rc(frame="iframe", retry=False, blind=False)
 
     sb.uc_gui_handle_captcha(frame="iframe")
-    sb.sb.uc_gui_click_captcha()
+    sb.uc_gui_click_captcha()
     print("connect")
     random_number = random.randint(1000, 9999)
     filename = f"screenshot_{random_number}.png"
