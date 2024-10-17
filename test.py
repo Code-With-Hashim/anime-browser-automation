@@ -7,7 +7,9 @@ from pyvirtualdisplay.display import Display
 disp = Display(visible=True, size=(1366, 768), backend="xvfb", use_xauth=True)
 disp.start()
 
-print(os.environ['DISPLAY'])
+os.environ['DISPLAY'] = ':99'
+
+print(os.environ['DISPLAY'], 'after')
 import Xlib.display
 pyautogui._pyautogui_x11._display = Xlib.display.Display(os.environ['DISPLAY'])
 
