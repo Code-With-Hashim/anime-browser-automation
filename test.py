@@ -22,6 +22,9 @@ with SB(uc=True, headed=True, disable_features="UserAgentClientHint", agent=ua, 
     sb.uc_open_with_reconnect("https://modijiurl.com/fBUFTv", 3)
     tab_handles = sb.driver.window_handles
     print(len(tab_handles))
+    if (len(tab_handles) >= 2):
+        sb.switch_to_window(1)
+        print('switched')
     print(sb.get_current_url())
     # driver_version = sb.driver.capabilities['chrome']['chromedriverVersion']  # For Chrome
         # For Firefox, use:
