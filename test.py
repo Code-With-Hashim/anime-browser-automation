@@ -51,7 +51,7 @@ with SB(uc=True, headed=True, disable_features="UserAgentClientHint", agent=ua, 
 
     time.sleep(10)
     print(sb.get_current_url())
-    sb.sb.uc_gui_click_captcha()
+    sb.uc_gui_click_captcha()
     time.sleep(10)
     print(sb.get_current_url())
 
