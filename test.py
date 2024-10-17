@@ -33,8 +33,8 @@ with SB(uc=True, headed=True, disable_features="UserAgentClientHint", agent=ua, 
         print('Click..')
         pyautogui.press(" ")
         sb.driver.reconnect(10)
-    else:
-        sb.uc_gui_handle_cf()
+
+    sb.uc_gui_handle_cf()
     print("connect")
     random_number = random.randint(1000, 9999)
     filename = f"screenshot_{random_number}.png"
