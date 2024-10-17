@@ -1,7 +1,7 @@
 import os
 from seleniumbase import SB
 import time
-# import pyautogui
+import pyautogui
 import random
 # from pyvirtualdisplay.display import Display
 # disp = Display(visible=True, size=(1366, 768), backend="xvfb", use_xauth=True)
