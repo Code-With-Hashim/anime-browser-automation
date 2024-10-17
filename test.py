@@ -34,7 +34,14 @@ with SB(uc=True, headed=True, disable_features="UserAgentClientHint", agent=ua, 
         pyautogui.press(" ")
         sb.driver.reconnect(10)
 
-    sb.sb.uc_gui_click_captcha()()
+    sb.uc_gui_click_x_y(x, y, timeframe=0.25)
+
+    sb.uc_gui_click_captcha(frame="iframe", retry=False, blind=False)
+    # driver.uc_gui_click_cf(frame="iframe", retry=False, blind=False)
+    # driver.uc_gui_click_rc(frame="iframe", retry=False, blind=False)
+
+    sb.uc_gui_handle_captcha(frame="iframe")
+    sb.sb.uc_gui_click_captcha()
     print("connect")
     random_number = random.randint(1000, 9999)
     filename = f"screenshot_{random_number}.png"
@@ -43,3 +50,8 @@ with SB(uc=True, headed=True, disable_features="UserAgentClientHint", agent=ua, 
 
     time.sleep(10)
     print(sb.get_current_url())
+    sb.sb.uc_gui_click_captcha()
+    time.sleep(10)
+    print(sb.get_current_url())
+
+
