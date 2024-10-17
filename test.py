@@ -1,17 +1,17 @@
 import os
 from seleniumbase import SB
 import time
-import pyautogui
+# import pyautogui
 import random
-from pyvirtualdisplay.display import Display
-disp = Display(visible=True, size=(1366, 768), backend="xvfb", use_xauth=True)
-disp.start()
+# from pyvirtualdisplay.display import Display
+# disp = Display(visible=True, size=(1366, 768), backend="xvfb", use_xauth=True)
+# disp.start()
 
-os.environ['DISPLAY'] = ':99'
+# os.environ['DISPLAY'] = ':99'
 
-print(os.environ['DISPLAY'], 'after')
-import Xlib.display
-pyautogui._pyautogui_x11._display = Xlib.display.Display(os.environ['DISPLAY'])
+# print(os.environ['DISPLAY'], 'after')
+# import Xlib.display
+# pyautogui._pyautogui_x11._display = Xlib.display.Display(os.environ['DISPLAY'])
 
 def verify_success(sb):
     sb.assert_element('img[alt="Logo Assembly"]', timeout=4)
@@ -35,6 +35,7 @@ with SB(uc=True, headed=True, disable_features="UserAgentClientHint", agent=ua, 
         sb.driver.reconnect(10)
     else:
         sb.uc_gui_handle_cf()
+    print("connect")
     random_number = random.randint(1000, 9999)
     filename = f"screenshot_{random_number}.png"
     sb.save_screenshot(filename)
