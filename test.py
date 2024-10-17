@@ -34,7 +34,7 @@ with SB(uc=True, headed=True, disable_features="UserAgentClientHint", agent=ua, 
         pyautogui.press(" ")
         sb.driver.reconnect(10)
 
-    sb.uc_gui_click_x_y(x, y, timeframe=0.25)
+    # sb.uc_gui_click_x_y(x, y, timeframe=0.25)
 
     sb.uc_gui_click_captcha(frame="iframe", retry=False, blind=False)
     # driver.uc_gui_click_cf(frame="iframe", retry=False, blind=False)
