@@ -17,7 +17,7 @@ def verify_success(sb):
 
 # Define the main function using SeleniumBase
 def main(link, search, eps):
-    with SB(uc=True, driver_version="129.0.6668.100") as sb:
+    with SB(uc=True, ad_block=True) as sb:
         sb.open(link)
 
         # Retrieve all anime cards
@@ -213,14 +213,15 @@ def main(link, search, eps):
 def publicEarnFormByPass(sb, id):
     """Bypass the form on the publicEarn site."""
     try:
-        try:
-            sb.execute_script(f"document.getElementById('SoumyaHelp-Ads').remove();")
-            print('Ads remove successfully')
-            sb.execute_script(f"document.getElementById('BR-Footer-Ads').remove();")
-            print('Ads remove successfully')
+        # try:
+        #     sb.execute_script(f"document.getElementById('SoumyaHelp-Ads').remove();")
+        #     print('Ads remove successfully')
+        #     sb.execute_script(f"document.getElementById('BR-Footer-Ads').remove();")
+        #     print('Ads remove successfully')
 
-        except Exception as eror:
-            print(eror)
+        # except Exception as eror:
+        #     print(eror)
+        
         sb.execute_script(f"document.getElementById('{id}').style.display = 'block';")
         continue_click = sb.find_element(By.ID , id)
         print('findit', continue_click.get_attribute('outerHTML'))
